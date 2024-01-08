@@ -257,7 +257,7 @@ def cli_evaluate(args: Union[argparse.Namespace, None] = None) -> None:
         batch_sizes = ",".join(map(str, results["config"]["batch_sizes"]))
 
         if args.output_path:
-            output_path_file.open("w").write(dumped)
+            output_path_file.open("w", encoding='utf-8').write(dumped)
 
             if args.log_samples:
                 for task_name, config in results["configs"].items():
@@ -271,7 +271,7 @@ def cli_evaluate(args: Union[argparse.Namespace, None] = None) -> None:
                         default=_handle_non_serializable,
                         ensure_ascii=False,
                     )
-                    filename.open("w").write(samples_dumped)
+                    filename.open("w", encoding='utf-8').write(samples_dumped)
 
         print(
             f"{args.model} ({args.model_args}), gen_kwargs: ({args.gen_kwargs}), limit: {args.limit}, num_fewshot: {args.num_fewshot}, "
