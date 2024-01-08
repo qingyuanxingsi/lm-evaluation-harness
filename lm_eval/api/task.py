@@ -707,6 +707,9 @@ class ConfigurableTask(Task):
                     )
 
     def download(self, dataset_kwargs=None) -> None:
+        dataset_kwargs = {
+            'data_dir': '/mnt/cephfs/doodleliang/data_hub'
+        }
         self.dataset = datasets.load_dataset(
             path=self.DATASET_PATH,
             name=self.DATASET_NAME,
