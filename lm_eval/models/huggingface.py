@@ -412,7 +412,7 @@ class HFLM(LM):
         self,
         pretrained: str,
         revision: str = "main",
-        trust_remote_code: bool = False,
+        trust_remote_code: bool = True,
     ) -> None:
         self._config = transformers.AutoConfig.from_pretrained(
             pretrained,
