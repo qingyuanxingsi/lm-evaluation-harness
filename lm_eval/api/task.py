@@ -8,6 +8,7 @@ from dataclasses import asdict, dataclass
 from typing import Any, List, Literal, Tuple, Union
 
 import datasets
+import os
 import numpy as np
 
 from lm_eval import utils
@@ -707,11 +708,10 @@ class ConfigurableTask(Task):
                     )
 
     def download(self, dataset_kwargs=None) -> None:
-        dataset_kwargs = {
-            'data_dir': '/mnt/cephfs/doodleliang/data_hub'
-        }
+        local_dir = '/mnt/cephfs/doodleliang/data_hub'
+        local_path = os.path.join(local_dir, self.DATASET_PATH)
         self.dataset = datasets.load_dataset(
-            path=self.DATASET_PATH,
+            path=local_path,
             name=self.DATASET_NAME,
             **dataset_kwargs if dataset_kwargs is not None else {},
         )
