@@ -84,7 +84,7 @@ class HFLM(LM):
         dtype: Optional[Union[str, torch.dtype]] = "auto",
         batch_size: Optional[Union[int, str]] = 1,
         max_batch_size: Optional[int] = 64,
-        trust_remote_code: Optional[bool] = False,
+        trust_remote_code: Optional[bool] = True,
         use_fast_tokenizer: Optional[bool] = True,
         # arguments used for splitting a model across GPUs naively.
         # only used if `parallelize=True`.
@@ -360,7 +360,7 @@ class HFLM(LM):
         self,
         config: transformers.AutoConfig,
         backend: Optional[Literal["default", "causal", "seq2seq"]] = "default",
-        trust_remote_code: Optional[bool] = False,
+        trust_remote_code: Optional[bool] = True,
     ) -> None:
         """
         Helper method during initialization.
@@ -425,7 +425,7 @@ class HFLM(LM):
         pretrained: str,
         revision: Optional[str] = "main",
         dtype: Optional[Union[str, torch.dtype]] = "auto",
-        trust_remote_code: Optional[bool] = False,
+        trust_remote_code: Optional[bool] = True,
         # arguments used for splitting a model across GPUs naively.
         # only used if `parallelize=True`.
         # (accelerate naive PP (device_map) options)
@@ -519,7 +519,7 @@ class HFLM(LM):
             ]
         ],
         revision: Optional[str] = "main",
-        trust_remote_code: Optional[bool] = False,
+        trust_remote_code: Optional[bool] = True,
         use_fast_tokenizer: Optional[bool] = True,
     ) -> None:
         """
