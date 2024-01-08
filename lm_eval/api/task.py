@@ -709,8 +709,11 @@ class ConfigurableTask(Task):
 
     def download(self, dataset_kwargs=None) -> None:
         local_dir = '/mnt/cephfs/doodleliang/data_hub'
-        local_path = os.path.join(local_dir, self.DATASET_PATH, self.DATASET_NAME)
-        print(f"> Config:{self.DATASET_PATH}/{self.DATASET_NAME}")
+        if self.DATASET_NAME is None:
+            local_path = os.path.join(local_dir, self.DATASET_PATH)
+        else:
+            local_path = os.path.join(local_dir, self.DATASET_PATH, self.DATASET_NAME)
+        print(f"> Config:{local_path}")
         self.dataset = datasets.load_from_disk(local_path)
 
     def has_training_docs(self) -> bool:
